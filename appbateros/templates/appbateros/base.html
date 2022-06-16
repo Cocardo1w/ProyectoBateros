@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+
+
 <html lang="en">
     <head>
-
         
 
+        
+        
         {% load static %}
 
 
@@ -12,13 +15,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Blog</title>
+        <title>Blog para bateristas</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{% static 'appbateros/assets/favicon.ico' %}" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'appbateros/css/styles.css' %}" rel="stylesheet" />
     </head>
+    
     <body>
+        
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
@@ -27,21 +32,26 @@
                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                            <li class="nav-item"><a class="nav-link" href="{% url 'Inicio' %}">Inicio</a></li>
-                           <li class="nav-item"><a class="nav-link" href="{% url 'Login' %}">Login</a></li>
-                           <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                           <li class="nav-item"><a class="nav-link" href="{% url 'About' %}">About</a></li>
                            <li class="nav-item"><a class="nav-link" href="{% url 'Contacto' %}">Contacto</a></li>
-                           <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
+                           <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'Post' %}">Blog</a></li>
+                           <li class="nav-item"><a class="nav-link" href="{% url 'Login' %}">Login</a></li>
+                           <li class="nav-item"><a class="nav-link" href="{% url 'Register' %}">Registrate!</a></li>
                        </ul>
                    </div>
            </div>
        </nav>
-
+       
+       
         
         <!-- Page content-->
         <div class="container">
+            
             <div class="row">
+                
                 <!-- Blog entries-->
                 <div class="col-lg-8">
+                    {% block main_content %}{% endblock main_content %}
                     <!-- Featured blog post-->
 
                     <!-- Nested row for non-featured blog posts-->
@@ -51,15 +61,16 @@
                     
                     <!-- Pagination-->
                     <nav aria-label="Pagination">
-                        <h1>Bienvenidos</h1>                        
-                            <section>
+                                               
+                            <!-- <section>
                                 <h3>Esto es Bateros!</h3>
                                 <img src="" alt="">
                                 <h6>Catriel Ciavarella (n. 1 de septiembre de 1979) es un baterista argentino de rock que actualmente toca en la banda Divididos.</h6>
                                 <a href="https://ibb.co/xF5ppT3"><img src="https://i.ibb.co/phXttFn/IMG-5552.jpg" alt="IMG-5552" border="0"></a>
                                 
-                                {% block main_content %}{% endblock main_content %}
-                            </section>
+                                
+                                
+                            </section> -->
                             
 
                         <hr class="my-0" />
@@ -112,8 +123,8 @@
                     </div>
                     <!-- Side widget-->
                     <div class="card mb-4">
-                        <div class="card-header">Efemerides *** 18/05/1955 ***</div>
-                        <div class="card-body">Ian Paice, baterista de Deep Purple y único miembro en aparecer en todos los discos de la banda, cumple hoy 72 años. Muchos se maravillan de 'Burn' por los solos de guitarra y teclado, pero ¿te fijaste bien en su batería, incluso en las estrofas?</div>
+                        <div class="card-header">Juntada bateristica *** 18/12/2022 ***</div>
+                        <div class="card-body">La idea es juntar como minimo 20 bateristas que toquemos un tema en la plaza castelli</div>
                     </div>
                 </div>
             </div>
@@ -129,3 +140,4 @@
     </body>
     
 </html>
+

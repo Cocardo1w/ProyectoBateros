@@ -6,7 +6,7 @@
 
         {% load static %}
 
-        {% block main_content %}
+        
        
 
         <meta charset="utf-8" />
@@ -136,6 +136,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <!-- Categories widget-->
                     <div class="card mb-4">
                         <div class="card-header">Categorias</div>
@@ -143,7 +144,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a href="{% url 'Partituras.html' %}">Partituras</a></li>
+                                        <li><a href="{% url 'Partituras' %}">Partituras</a></li>
                                         <li><a href="#!">Clases</a></li>
                                         <li><a href="#!">Drums Doctor</a></li>
                                     </ul>
@@ -176,5 +177,5 @@
         <script src="{% static 'appbateros/js/scripts.js' %}"></script>
     </body>
 </html>
-
+{% block main_content %}
 {% endblock main_content %}

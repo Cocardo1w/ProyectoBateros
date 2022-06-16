@@ -1,3 +1,6 @@
+{% extends 'appbateros/base.html' %}
+{% block main_content %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,13 +10,37 @@
     <title>Post!</title>
 </head>
 <body>
-    <style>
-        body {
-            background-color: brown;
-        }
-    </style>
-    <h4>Aca van a estar todos los POST!</h4>
+<h1>Bienvenidos</h1>
+
+
+{{elemento.nombre}}
+
+
+
+<h4>Aca van a estar todos los POST!</h4>
+                    
+    
+        
+    <h6>Catriel Ciavarella (n. 1 de septiembre de 1979) es un baterista argentino de rock que actualmente toca en la banda Divididos.</h6>
+    <a href="https://ibb.co/xF5ppT3"><img src="https://i.ibb.co/phXttFn/IMG-5552.jpg" alt="IMG-5552" border="0"></a>
+        
+    {% for elemento in articulos %}
+    <article>
+        <h3>{{ elemento.nombre }}</h3>
+        <p>
+            {{elemento.contenido}}
+            <img src="{{ elemento.imagen}}">
+            <footer>
+                Autor: {{ elemento.autor }}
+                Fecha: {{ elemento.fecha }}
+            </footer>
+        </p>
+    </article>
+    {% endfor %}
+
+
 
     
 </body>
 </html>
+{% endblock main_content %}
