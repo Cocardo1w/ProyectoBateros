@@ -10,33 +10,62 @@
     <title>Post!</title>
 </head>
 <body>
-<h1>Bienvenidos</h1>
+  <h1>Bienvenidos al Blog...</h1> 
+  <hr size="8px" color="black">
 
+  <hr size="8px" color="red" />
 
-{{elemento.nombre}}
-
-
-
-<h4>Aca van a estar todos los POST!</h4>
-                    
-    
-        
-    <h6>Catriel Ciavarella (n. 1 de septiembre de 1979) es un baterista argentino de rock que actualmente toca en la banda Divididos.</h6>
-    <a href="https://ibb.co/xF5ppT3"><img src="https://i.ibb.co/phXttFn/IMG-5552.jpg" alt="IMG-5552" border="0"></a>
-        
+  <section>
     {% for elemento in articulos %}
     <article>
-        <h3>{{ elemento.nombre }}</h3>
+      <h3>{{ elemento.titulo}}</h3>
+      <img src="{{elemento.imagen}}" >
         <p>
-            {{elemento.contenido}}
-            <img src="{{ elemento.imagen}}">
-            <footer>
-                Autor: {{ elemento.autor }}
-                Fecha: {{ elemento.fecha }}
-            </footer>
+          {{elemento.contenido|safe}}
         </p>
-    </article>
+
+        <footer>
+          Autor: <b>{{elemento.autor}}</b> 
+        </footer>
+      </article>  
+    
     {% endfor %}
+  </section> <br>
+
+  
+  <section>
+    <form action="" method="post">
+      {% csrf_token %}
+      <h3>Comentario</h3>
+      {{ form.as_p }}
+
+      <input type="submit" name="enviar" value="Enviar Comentario">
+      {% if mensaje %}
+        <h2>{{mensaje}}</h2>
+      {% endif %}
+      
+    </form>
+  </section>
+
+
+<!-- <div class="card mb-4">
+    <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
+    {% if posts %}
+        {% for post in posts %}
+    <div class="card-body">
+    <div class="small text-muted">January 1, 2022</div>
+        <h2 class="card-title h4">Post Title</h2>
+        {{post.titulo}}
+        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
+        <a class="btn btn-primary" href="#!">Read more →</a>
+    </div>
+        {% endfor %}
+    {% endif %}
+    <h1>No existen los post</h1>
+</div> -->
+
+
+
 
 
 

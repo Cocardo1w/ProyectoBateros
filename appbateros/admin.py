@@ -1,5 +1,5 @@
 from django.contrib import admin
-from appbateros.models import Autor, Categoria
+from appbateros.models import Autor, Categoria, Comentario
 
 from appbateros.views import post
 from appbateros.models import *
@@ -18,4 +18,6 @@ class AutorAdmin(admin.ModelAdmin):
 
 admin.site.register(Categoria, CategoriaAdmin) #Categoria es una instancia del modelo
 admin.site.register(Autor, AutorAdmin)
+admin.site.register(Post)
+admin.site.register(Comentario)
 
