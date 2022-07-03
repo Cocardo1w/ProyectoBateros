@@ -5,6 +5,7 @@ from django.db import models
 from time import timezone
 from django.utils import timezone
 from ckeditor.fields import RichTextField
+from django.contrib.auth.models import User
 
 # Create your models here.
 

@@ -1,10 +1,13 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from appbateros.forms import ComentarioForm
+
+from django.shortcuts import render, redirect
+
+from appbateros.forms import ComentarioForm, UsuarioEditForm
 from appbateros.models import Autor, Categoria, Post, Comentario
-from appbateros.forms import ComentarioForm
+
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
     
@@ -20,6 +23,7 @@ def Inicio(request):
 
 def post(request):
     articulos = Post.objects.all()
+    comentarios = Comentario.objects.all()
     if request.method == "POST":
         form = ComentarioForm(request.POST)
         if form.is_valid():
@@ -29,9 +33,10 @@ def post(request):
             obj.save()
             form = ComentarioForm() #genera formulario
             mensaje = "Gracias por tu comentario"
-            return render(request,"appbateros/Post.html", {"articulos":articulos, "mensaje": mensaje, "form": form})
+            
+            return render(request,"appbateros/Post.html", {"articulos":articulos, "mensaje": mensaje, "form": form, 'comentarios': comentarios})
     form = ComentarioForm()
-    return render(request, "appbateros/Post.html", {'articulos': articulos, "form": form})
+    return render(request, "appbateros/Post.html", {'articulos': articulos, "form": form, 'comentarios': comentarios})
 
 
 def partituras(request):
@@ -78,7 +83,7 @@ def register_request(request):
         if form.is_valid():
             usuario = form.cleaned_data.get("Nombre de Usuario")
             form.save() # guarda los datos del modelo del usuario
-
+            # usuario = form.cleaned_data.get SEGUIR !!!
             dict_ctx = {"title": "Inicio", "page": usuario}
             return render(request, "appbateros/index.html", dict_ctx)        
         else:
@@ -87,6 +92,42 @@ def register_request(request):
     else:
         form = UserCreationForm()
         return render(request, "appbateros/register.html", {"form": form})
+
+@login_required()
+def actualizar_usuario(request):
+
+
+
+    usuario = request.user
+
+    if request.method == "POST":
+        formulario = UsuarioEditForm(request.POST)
+
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+
+            usuario.email = data["email"]
+            usuario.password1 = data["password1"]
+            usuario.password2 = data["password2"]
+            usuario.last_name = data["last_name"]
+            usuario.first_name = data["first_name"]
+
+            usuario.save()
+
+            return redirect("Inicio")
+        else:
+            formulario = UsuarioEditForm(initial={"email": usuario.email})
+            return render(request, "appbateros/editar_usuario.html", {"form": formulario, "errors": ["Datos invalidos"]})
+
+    else:
+        formulario = UsuarioEditForm(initial={"email": usuario.email})
+        return render(request, "appbateros/editar_usuario.html", {"form": formulario})
+
+def BancoMusicos(request):
+    return render(request, "appbateros/Bancomusicos.html")
+
+def Clases(request):
+    return render(request, "appbateros/clases.html")
 
 
 

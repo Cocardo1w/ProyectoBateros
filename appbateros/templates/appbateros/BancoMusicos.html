@@ -1,0 +1,57 @@
+{% extends 'appbateros/base.html' %}
+{% block main_content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <h3>Banco de Musicos</h3> <br>
+
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+          <div class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe0dzGfGOAIv9gN7wi2WLNumVE1fQlNs5h-AzzlfJ4SdRo1I2IePUBklUuUlVEKKg3EiE&usqp=CAU" width="200" height="200" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Impulso distinto</h5>
+              <p class="card-text">Se busca saxofonista para una temporada.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiItVpUd3Tws6S1ya5XysLsyafeZAfiTn4cSJlWSV-enal8bnNQ-tWnyjVkZCKMSdYHss&usqp=CAU" width="200" height="200" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">SOLDADORES</h5>
+              <p class="card-text">Se busca BAJISTA para una temporada.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="https://radiografica.org.ar/wp-content/uploads/2021/10/44a833ca-7b2e-4127-93be-6f4e346d43de.png" width="200" height="200" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Almafuerte</h5>
+              <p class="card-text">Busca guitarra criolla.</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Contacto
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="https://radiocantilo.com/wp-content/uploads/2020/06/baterista.jpg" width="200" height="200" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Banda de cover de Rata Blanca</h5>
+              <p class="card-text">Se busca baterista equipado.</p>
+            </div>
+          </div>
+        </div>
+      </div>    
+</body>
+</html>
+{% endblock main_content %}

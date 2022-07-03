@@ -47,6 +47,16 @@
     </form>
   </section>
 
+  {% for Comentario in comentarios %}
+  <article class="media box">
+      <div class="media-content">
+          <strong>{{Comentario.nombre}}</strong> <small>{{Comentario.comentario}}</small> <br>
+                      
+
+      </div>
+  </article>
+  {% endfor %}
+
 
 <!-- <div class="card mb-4">
     <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
