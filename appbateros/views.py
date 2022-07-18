@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from appbateros.forms import ComentarioForm, UsuarioEditForm
-from appbateros.models import Autor, Categoria, Post, Comentario
+from appbateros.models import Autor, Categoria, Post, Comentario, Liked
+from django.db.models.query import QuerySet
 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
@@ -18,12 +19,11 @@ def base(request):
     posts = Post.objects.filter(estado = True) #Post es el models
     return render(request, "appbateros/base.html")
 
-def Inicio(request):
-    return render(request, "appbateros/Inicio.html")
 
 def post(request):
-    articulos = Post.objects.all()
+    articulos = Post.objects.all().order_by('fecha_creacion')
     comentarios = Comentario.objects.all()
+    context = like = 'like'
     if request.method == "POST":
         form = ComentarioForm(request.POST)
         if form.is_valid():
@@ -34,14 +34,32 @@ def post(request):
             form = ComentarioForm() #genera formulario
             mensaje = "Gracias por tu comentario"
             
-            return render(request,"appbateros/Post.html", {"articulos":articulos, "mensaje": mensaje, "form": form, 'comentarios': comentarios})
+            return render(request,"appbateros/Post.html", {"articulos":articulos, "mensaje": mensaje, "form": form, 'comentarios': comentarios, "like": like})
     form = ComentarioForm()
-    return render(request, "appbateros/Post.html", {'articulos': articulos, "form": form, 'comentarios': comentarios})
+    return render(request, "appbateros/Post.html", {'articulos': articulos, "form": form, 'comentarios': comentarios, "like": like})
 
+def BorrarPost(request, id):
+    try:
+        p = Post.objects.get(id=id)
+        p.delete()
 
-def partituras(request):
+        return render(request, "appbateros/index.html")
+    except Exception as exc:
+        return render(request, "appbateros/index.html")
+
+def LikedPost(request):
+    user = request.user
+
+    if request.method == 'POST':
+        post.id = request.POST.get('post.id')
         
-    return render(request, "appbateros/partituras.html")
+    
+
+def libros(request):        
+    return render(request, "appbateros/libros.html")
+
+def DrumsDoctor(request):
+    return render (request,"appbateros/drumsdoctor.html")
        
 def about(request):
     return render(request, "appbateros/about.html")
@@ -95,8 +113,6 @@ def register_request(request):
 
 @login_required()
 def actualizar_usuario(request):
-
-
 
     usuario = request.user
 

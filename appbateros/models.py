@@ -1,4 +1,5 @@
 from ast import Pass
+from itertools import count
 from tabnanny import verbose
 from urllib import request
 from django.db import models 
@@ -50,6 +51,7 @@ class Post(models.Model):
     imagen = models.URLField(max_length=280, blank=False,null=False)
     autor = models.ForeignKey(Autor, on_delete= models.CASCADE)
     categoria = models.ForeignKey(Categoria, on_delete= models.CASCADE)
+    like =  models.ManyToManyField(User, default=None, blank=True)
     estado = models.BooleanField('Publicado/No Publicado', default= True)
     fecha_creacion = models.DateField('Fecha de Creacion', auto_now=False, auto_now_add=True)
 
@@ -59,6 +61,23 @@ class Post(models.Model):
 
     def __str__(self) :
         return self.titulo
+
+    @property
+    def numLike(self):
+        return self.like.all().count()
+
+LIKE_CHOICES = (
+    ('Like', 'Like'),
+    ('Unlike', 'Unlike'),
+)
+class Liked(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOICES, default='Like', max_length=10)
+
+    def __str__(self): 
+        return str(self.post)
+
 
 class Comentario(models.Model):
     nombre = models.CharField(max_length=60)

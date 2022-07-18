@@ -12,12 +12,12 @@
 <body>
   <h1>Bienvenidos al Blog...</h1> 
   <hr size="8px" color="black">
-
+  
   <hr size="8px" color="red" />
-
+<div class="ui segment">
   <section>
     {% for elemento in articulos %}
-    <article>
+      <article>
       <h3>{{ elemento.titulo}}</h3>
       <img src="{{elemento.imagen}}" >
         <p>
@@ -25,8 +25,18 @@
         </p>
 
         <footer>
-          Autor: <b>{{elemento.autor}}</b> 
+          Autor: <b>{{elemento.autor}}</b> <br>
+          Fecha: <b>{{elemento.fecha_creacion}}</b>
+
         </footer>
+        <br>
+        {% if request.user.is_authenticated %}
+        <td>
+          <a href="{% url 'borrarpost' elemento.id %}" class="btn btn-danger btn-sm">borrar</a>
+          <br>
+          <b>{{elemento.like.all}}</b>
+        {% endif %}
+        
       </article>  
     
     {% endfor %}
@@ -57,7 +67,7 @@
   </article>
   {% endfor %}
 
-
+</div>
 <!-- <div class="card mb-4">
     <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
     {% if posts %}

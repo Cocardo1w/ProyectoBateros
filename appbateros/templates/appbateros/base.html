@@ -17,7 +17,7 @@
         <meta name="author" content="" />
         <title>Blog para bateristas</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="{% static 'appbateros/assets/favicon.ico' %}" />
+        <link rel="icon" type="image/x-icon" href="{% static 'appbateros/assets/favicom.ico' %}" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'appbateros/css/styles.css' %}" rel="stylesheet" />
     </head>
@@ -31,7 +31,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Inicio' %}">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'About' %}">About</a></li>
                         
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'Post' %}">Blog</a></li>
@@ -62,8 +62,11 @@
                 
                 <!-- Blog entries-->
                 <div class="col-lg-8">
+                    {% block main_content %}
                     
-                     {% block main_content %}{% endblock main_content %}
+                    
+                    {% endblock main_content %}
+
                     <!-- Featured blog post-->
                     <!-- Nested row for non-featured blog posts-->
                     <div class="row">
@@ -131,13 +134,13 @@
                                     <ul class="list-unstyled mb-0">
                                         <li><a href="{% url 'BancoMusicos' %}">Banco de Musicos</a></li>
                                         <li><a href="{% url 'Clases' %}">Clases</a></li>
-                                        <li><a href="">Drums Doctor</a></li>
+                                        <li><a href="{% url 'DrumsDoctor' %}">Drums Doctor</a></li>
                                     </ul>
                                 </div>
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li><a href="">Armá tu set</a></li>
-                                        <li><a href="{% url 'Partituras' %}">Partituras</a></li>
+                                        <li><a href="{% url 'Libros' %}">Libros</a></li>
                                         <li><a href="#!">Ventas</a></li>
 
                                         
